@@ -11,7 +11,7 @@ infura_url = f"https://mainnet.infura.io/v3/{infura_token}"
 '''
 
 def connect_to_eth():
-	url = "https://blast-mainnet.infura.io/v3/03016c3bbdb5494f962fcd2d8ac441f1"  # FILL THIS IN
+	url = "https://mainnet.infura.io/v3/03016c3bbdb5494f962fcd2d8ac441f1"  # FILL THIS IN
 	w3 = Web3(HTTPProvider(url))
 	assert w3.is_connected(), f"Failed to connect to provider at {url}"
 	return w3
@@ -44,6 +44,7 @@ def connect_with_middleware(contract_json):
 if __name__ == "__main__":
 	w3 = connect_to_eth()
 	print("connection status:", w3.is_connected())
+	print("latest block:", w3.eth.get_block('latest')['number'])
 	
 	w3_bsc, contract = connect_with_middleware("contract_info.json")
 	print("BNB connection status:", w3_bsc.is_connected())
