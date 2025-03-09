@@ -4,7 +4,6 @@ from web3.middleware import ExtraDataToPOAMiddleware
 from web3.providers.rpc import HTTPProvider
 from web3.middleware import geth_poa_middleware
 
-
 '''
 If you use one of the suggested infrastructure providers, the url will be of the form
 now_url  = f"https://eth.nownodes.io/{now_token}"
@@ -36,7 +35,7 @@ def connect_with_middleware(contract_json):
 	# create a contract object. Read more on the docs pages at https://web3py.readthedocs.io/en/stable/middleware.html
 	# and https://web3py.readthedocs.io/en/stable/web3.contract.html
 	w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-	
+
 	checksum_address = Web3.to_checksum_address(address)
 	contract = w3.eth.contract(address=checksum_address, abi=abi)
 
