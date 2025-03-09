@@ -33,7 +33,7 @@ def connect_with_middleware(contract_json):
 	# The second section requires you to inject middleware into your w3 object and
 	# create a contract object. Read more on the docs pages at https://web3py.readthedocs.io/en/stable/middleware.html
 	# and https://web3py.readthedocs.io/en/stable/web3.contract.html
-	w3.middleware_onion.inject(Web3.middleware.GasPriceStrategyMiddleware, layer=0)
+	w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
 
 	checksum_address = Web3.to_checksum_address(address)
 	contract = w3.eth.contract(address=checksum_address, abi=abi)
@@ -44,5 +44,7 @@ def connect_with_middleware(contract_json):
 if __name__ == "__main__":
 	w3 = connect_to_eth()
 	print("connection status:", w3.is_connected())
-	print("latest block:", w3.eth.get_block('latest')['number'])
-	connect_to_eth()
+	
+	w3_bsc, contract = connect_with_middleware("contract_info.json")
+	print("BNB connection status:", w3_bsc.is_connected())
+	print("Contract address:", contract.address)
