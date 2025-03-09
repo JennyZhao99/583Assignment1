@@ -11,7 +11,7 @@ infura_url = f"https://mainnet.infura.io/v3/{infura_token}"
 '''
 
 def connect_to_eth():
-	url = "https://blast-mainnet.infura.io/v3/03016c3bbdb5494f962fcd2d8ac441f1"  # FILL THIS IN
+	url = "https://blast-sepolia.infura.io/v3/03016c3bbdb5494f962fcd2d8ac441f1"  # FILL THIS IN
 	w3 = Web3(HTTPProvider(url))
 	assert w3.is_connected(), f"Failed to connect to provider at {url}"
 	return w3
